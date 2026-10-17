@@ -41,6 +41,12 @@ export const Login = () => {
     setShowPassword(!showPassword)
   }
 
+  const useDemoCredentials = () => {
+    setEmail("admin@gmail.com")
+    setPassword("adminpassword123")
+    SetError(null)
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
       <div className="w-full max-w-md">
@@ -63,6 +69,19 @@ export const Login = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
+                <p className="font-semibold">Demo account</p>
+                <p className="mt-1">Email: admin@gmail.com</p>
+                <p>Password: adminpassword123</p>
+                <button
+                  type="button"
+                  onClick={useDemoCredentials}
+                  className="mt-3 font-medium text-blue-700 underline hover:text-blue-900"
+                >
+                  Use demo credentials
+                </button>
+              </div>
+
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                   Email Address
