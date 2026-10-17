@@ -31,13 +31,18 @@ cd staffsync
 
 ### 2. Set Up Environment Variables
 
-Create a `.env` file in the server directory and define the following variables with your own values:
+Copy `server/.env.example` to `server/.env`, then fill in the MongoDB connection string and a private JWT signing key:
 
 ```env
-PORT=
-MONGODB_URL=
-JWT_KEY=
+PORT=5000
+MONGODB_URL=mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority
+JWT_KEY=replace-with-a-long-random-private-value
 ```
+
+`PORT` is the port used by the Express API. `MONGODB_URL` is your MongoDB
+connection string, and `JWT_KEY` must be a private, unpredictable string used
+to sign login tokens. Do not commit `server/.env` or paste real credentials
+into documentation.
 
 ### 3. Install Dependencies
 
@@ -66,6 +71,18 @@ node userSeed.js
 
 This will create an admin user.
 
+Use these credentials to sign in for the first time:
+
+```text
+Email: admin@gmail.com
+Password: adminpassword123
+```
+
+There is no public signup page. After signing in as an admin, open
+**Employees** and choose **Add New Employee**. Set the employee's email,
+password, and role there. The employee can then sign in using those
+credentials.
+
 ### 5. Start the Application
 
 #### Backend
@@ -74,6 +91,9 @@ This will create an admin user.
 cd server
 npm start
 ```
+
+You can also start the backend directly with `node server.js`; it loads
+`server/.env` automatically.
 
 #### Frontend
 
